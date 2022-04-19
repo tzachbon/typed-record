@@ -146,3 +146,7 @@ const key = TypedRecord.key<{ hello: 'world' }>('test');
 ## Contributing
 
 Feel free to fork and create pull requests!
+
+## Importanted note
+
+Special thanks to my colleagues at [Stylable](https://stylable.io/) for the knowledge sharing.
