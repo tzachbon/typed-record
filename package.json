@@ -1,6 +1,6 @@
 {
   "name": "typed-record",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A record object that uses a key to retrieve a typed value",
   "main": "dist/cjs/index.js",
   "typings": "dist/cjs/index.d.ts",
