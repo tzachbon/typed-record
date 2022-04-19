@@ -76,4 +76,16 @@ describe('TypedRecord', () => {
     expect(typedRecord.has(first)).toEqual(false);
     expect(typedRecord.has(second)).toEqual(false);
   });
+
+  it("should be enable to share record's data between instance", () => {
+    const record = {};
+
+    const first = new TypedRecord(record);
+    const second = new TypedRecord(record);
+
+    const key = first.set('create-in-first-instance', 1);
+
+    expect(first.has(key)).toEqual(true);
+    expect(second.has(key)).toEqual(true);
+  });
 });

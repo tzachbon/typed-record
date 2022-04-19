@@ -1,1 +1,2 @@
-export { Key, TypedRecord, TypedRecordData, Value } from './typed-record';
+export type { Key, Value } from './types';
+export { TypedRecord, TypedRecordData } from './typed-record';

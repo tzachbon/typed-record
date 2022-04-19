@@ -1,14 +1,13 @@
-const type = Symbol();
-export type TypedRecordData = Map<Key, unknown>;
-export type Key<T = unknown> = symbol & { [type]: T };
-export type Value<K extends Key> = K[typeof type];
+import type { Key, Value } from './types';
+
+export type TypedRecordData = Record<Key, unknown>;
 
 /**
  * The TypedRecord object holds key (Symbol) - value pairs.
  * The key is used to retrieve the value and holds the type of the value.
  */
 export class TypedRecord {
-  private record: TypedRecordData = new Map();
+  constructor(private record: TypedRecordData = {}) {}
 
   /**
    *
@@ -47,7 +46,7 @@ export class TypedRecord {
       key = TypedRecord.key(key) as K;
     }
 
-    this.record.set(key, value);
+    this.record[key] = value;
 
     return key;
   }
@@ -67,7 +66,7 @@ export class TypedRecord {
    * const value = typedRecord.get(myKey); // The type would be "{ hello: 'world' }"
    */
   get<K extends Key>(key: K): Value<K> | undefined {
-    return this.record.get(key);
+    return this.record[key];
   }
 
   /**
@@ -87,7 +86,7 @@ export class TypedRecord {
    *
    */
   has<K extends Key>(key: K): boolean {
-    return this.record.has(key);
+    return key in this.record;
   }
 
   /**
@@ -97,13 +96,18 @@ export class TypedRecord {
    * @returns returns true if the record contained the specified element
    */
   delete<K extends Key>(key: K): boolean {
-    return this.record.delete(key);
+    if (this.has(key)) {
+      delete this.record[key];
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
    * The clear method removes all elements from a record object.
    */
   clear() {
-    this.record.clear();
+    this.record = {};
   }
 }
