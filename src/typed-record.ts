@@ -41,7 +41,7 @@ export class TypedRecord {
    *
    */
   set<K extends Key>(key: K, value: Value<K>): K;
-  set<V, K extends Key>(key: string, value: V): Key<V>;
+  set<V>(key: string, value: V): Key<V>;
   set<V, K extends Key<V>>(key: K | string, value: Value<K>): K {
     if (typeof key === 'string') {
       key = TypedRecord.key(key) as K;
