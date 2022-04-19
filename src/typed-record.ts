@@ -1,6 +1,5 @@
 const type = Symbol();
-
-export type TypedRecordData = Record<Key, unknown>;
+export type TypedRecordData = Map<Key, unknown>;
 export type Key<T = unknown> = symbol & { [type]: T };
 export type Value<K extends Key> = K[typeof type];
 
@@ -9,7 +8,7 @@ export type Value<K extends Key> = K[typeof type];
  * The key is used to retrieve the value and holds the type of the value.
  */
 export class TypedRecord {
-  constructor(private data: TypedRecordData = {}) {}
+  private record: TypedRecordData = new Map();
 
   /**
    *
@@ -48,7 +47,7 @@ export class TypedRecord {
       key = TypedRecord.key(key) as K;
     }
 
-    this.data[key] = value;
+    this.record.set(key, value);
 
     return key;
   }
@@ -68,7 +67,7 @@ export class TypedRecord {
    * const value = typedRecord.get(myKey); // The type would be "{ hello: 'world' }"
    */
   get<K extends Key>(key: K): Value<K> | undefined {
-    return this.data[key];
+    return this.record.get(key);
   }
 
   /**
@@ -88,7 +87,7 @@ export class TypedRecord {
    *
    */
   has<K extends Key>(key: K): boolean {
-    return key in this.data;
+    return this.record.has(key);
   }
 
   /**
@@ -98,18 +97,13 @@ export class TypedRecord {
    * @returns returns true if the record contained the specified element
    */
   delete<K extends Key>(key: K): boolean {
-    if (this.has(key)) {
-      delete this.data[key];
-      return true;
-    } else {
-      return false;
-    }
+    return this.record.delete(key);
   }
 
   /**
    * The clear method removes all elements from a record object.
    */
   clear() {
-    this.data = {};
+    this.record.clear();
   }
 }
