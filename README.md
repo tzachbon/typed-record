@@ -12,7 +12,16 @@ const record: Record<string, number | string | undefined> = {
 };
 
 // Much Later in your code.....
-const iWouldLikeToBeOfTypeNumber = record.thisIsANumber // The type would be "string | number | undefined" unfortunately...
+let iWouldLikeToBeOfTypeNumber = record.thisIsANumber // The type would be "string | number | undefined" unfortunately...
+
+
+//// It's even worse with Maps
+
+const myMap = new Map();
+
+myMap.set('thisIsANumber', 5)
+
+iWouldLikeToBeOfTypeNumber = myMap.get('thisIsANumber') // What?? You should not get any... If there was a solution?
 ```
 
 So you can chill out and just use `TypedRecord` instead.
