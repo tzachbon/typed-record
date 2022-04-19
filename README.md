@@ -7,8 +7,11 @@ Aren't you sick of creating a `Record` or `Map` without strictly knowing the typ
 
 For example:
 ```ts
-let record!: Record<string, number | string | undefined>;
+const record: Record<string, number | string | undefined> = {
+    thisIsANumber: 5
+};
 
+// Much Later in your code.....
 const iWouldLikeToBeOfTypeNumber = record.thisIsANumber // The type would be "string | number | undefined" unfortunately...
 ```
 
