@@ -55,6 +55,8 @@ export class TypedRecord {
 
   /**
    *
+   * The get method returns the value associated with the specified key.
+   *
    * @param key - the key (Symbol) that holds the type of the value
    * @returns the typed value or undefined if it doesn't exist
    *
@@ -74,6 +76,16 @@ export class TypedRecord {
    *
    * @param key - the key (Symbol) that holds the type of the value
    * @returns returns true if the record contains the specified key
+   *
+   * @example
+   *
+   * const typedRecord = new TypedRecord();
+   *
+   * const myKey = typedRecord.set('my-key', { hello: 'world' });
+   *
+   * typedRecord.has(myKey); // true
+   * typedRecord.has(TypedRecord.key('does-not-exist-key')); // false
+   *
    */
   has<K extends Key>(key: K): boolean {
     return key in this.data;
