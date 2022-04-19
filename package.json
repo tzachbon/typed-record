@@ -38,7 +38,7 @@
     "name": "tzachbon",
     "url": "https://github.com/tzachbon"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.25",
