@@ -6,10 +6,7 @@
   "typings": "dist/cjs/index.d.ts",
   "module": "dist/esm/index.js",
   "scripts": {
-    "build:cjs": "tsc --project \"./src/tsconfig.cjs.json\"",
-    "build:esm": "tsc --project \"./src/tsconfig.esm.json\"",
-    "build:test": "tsc --project \"./test/tsconfig.json\"",
-    "build": "npm-run-all build:*",
+    "build": "tsc --build",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "pretest": "npm run build",
