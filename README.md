@@ -36,6 +36,13 @@ const aNumber = typedRecord.get(myKey) // The type is "number"!!!
 ```
 Simple as that.
 
+### When you should use it
+
+I would only recommend using this pattern when you have a "pluggable" (when you compose stuff) flow where the main flow does fully aware of the type of the values.
+This pattern will give you the advantaged of dynamic pluggable typings and communication between the plug-ins.
+
+- I call it plug-in but you can name it whatever you like, component, feature etc...
+
 ## Installation
 
 ```bash
